@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Task</title>
+    <style>
+        div.data{
+           outline: 2px solid #000;
+           width: 300px;
+           height: 240px;
+           background: #FFFFE0;
+        }
+        p, a.btn {
+            margin-left: 10px;
+        }
+        input.btn-success{
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<center><div class="container" >
+    <h1> Все записи</h1>
+    <form action="/add" method="post">
+        <input type="submit" class="btn-success" name="btn" value="Добавить новую запись">
+    </form>
+    <form action="/registration">
+        <input type="submit" class="btn-success" name="btn" value="Регистрация нового пользователя">
+    </form>
+        {% for dt in data %}
+        <form action="/{{ dt.id }}/update" method="post">
+        <div class="data">
+            <p>Id: {{ dt.id }} </p>
+            <p>Uptime: <input type="text" name="uptime_text" id="uptime_text" class="uptime_text" value="{{ dt.uptime_text }}" placeholder="Введите название"></p>
+            <p>Price: <input type="text" name="price_per_mn_text" id="price_per_mn_text" class="price_per_mn_text" value="{{ dt.price_per_mn_text }}" placeholder="Введите название"></p>
+            <p>Days left: <input type="text" name="days_left_text" id="days_left_text" class="days_left_text" value="{{ dt.days_left_text }}" placeholder="Введите название"></p>
+            <p>Date: <input type="text" name="date" id="date" class="date" value="{{ dt.date.date() }}" placeholder="Введите название"></p>
+            <input type="submit" class="btn-success" name="btn" value="Изменить">
+            <button><a href="/{{ dt.id }}/delete">Удалить</a></button>
+            <h1></h1>
+        </div>
+        </form>
+        {% endfor %}
+
+</div></center>
+</body>
+</html>
